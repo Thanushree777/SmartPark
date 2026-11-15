@@ -1,0 +1,10 @@
+
+services:
+  smartpark:
+    build: .
+    container_name: smartpark-app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./smartpark.db:/app/smartpark.db
+    restart: unless-stopped
