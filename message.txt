@@ -1,3 +1,0 @@
-Hello Student B!
-This file is created by Student A.
-Learning Git Push, Fetch and Pull.
