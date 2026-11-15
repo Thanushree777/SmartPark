@@ -1,4 +1,3 @@
-
 name: SmartPark CI Pipeline
 
 on:
@@ -28,3 +27,7 @@ jobs:
       - name: Run application tests
         run: |
           pytest -v
+
+      - name: Build Docker image
+        run: |
+          docker build -t smartpark:ci .
