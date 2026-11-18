@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,72 +7,277 @@
     <title>SmartPark | Admin Dashboard</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
 
-    <header class="header">
-        <h1>SmartPark Admin</h1>
-        <button id="adminLogoutBtn" class="admin-button">
-    Logout
-</button>
-        <p>Parking Management System</p>
-    </header>
+<div class="app-shell">
 
-    <main class="container">
-        <h2>Admin Dashboard</h2>
-        <p>Monitor parking slots and customer bookings.</p>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">Smart<span>Park.</span></div>
+        <p class="sidebar-label">MANAGEMENT</p>
 
-        <div class="stats-container">
+        <nav>
+            <a href="#dashboard" class="active">◫ Dashboard</a>
+            <a href="#availability">▦ Availability</a>
+            <a href="#slot-management">▤ Slot Management</a>
+            <a href="#scanner">▣ QR Scanner</a>
+            <a href="#overstay">◷ Overstay Detection</a>
+            <a href="#activity">◉ Activity Logs</a>
+            <a href="#bookings">▧ Bookings</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="/">← Customer Dashboard</a>
+            <button id="adminLogoutBtn" class="admin-button">
+                Logout
+            </button>
+        </div>
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="dashboard">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div>
+                <p class="topbar-subtitle">SMARTPARK MANAGEMENT</p>
+                <h2>Admin Dashboard</h2>
+            </div>
+
+            <div class="topbar-right">
+                <span class="status-badge">● System Active</span>
+            </div>
+        </header>
+
+
+        <!-- WELCOME BANNER -->
+        <section class="hero-banner customer-hero">
+            <div>
+                <p>ADMIN CONTROL CENTER</p>
+                <h1>Parking Management Overview</h1>
+                <p>Monitor parking operations, bookings and vehicle activity from one place.</p>
+            </div>
+            <div class="hero-icon">P</div>
+        </section>
+
+
+        <!-- STATISTICS -->
+        <section class="stats-container">
+
             <div class="stat-card">
                 <h3>Total Slots</h3>
                 <p id="totalSlots">0</p>
+                <span>Parking capacity</span>
             </div>
 
             <div class="stat-card">
                 <h3>Available Slots</h3>
                 <p id="availableSlots">0</p>
+                <span>Ready for booking</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>Reserved Slots</h3>
+                <p id="reservedSlots">0</p>
+                <span>Currently reserved</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>Occupied Slots</h3>
+                <p id="occupiedSlots">0</p>
+                <span>Vehicles parked</span>
             </div>
 
             <div class="stat-card">
                 <h3>Confirmed Bookings</h3>
                 <p id="confirmedBookings">0</p>
+                <span>Successful bookings</span>
             </div>
-        </div>
 
-        <section class="admin-section">
-    <h2>Parking Slot Management</h2>
-
-    <div class="admin-add-form">
-        <h3>Add New Parking Slot</h3>
-
-        <form id="addSlotForm">
-            <input
-                type="text"
-                id="newSlotNumber"
-                placeholder="Enter slot number (Example: P21)"
-                required
-                maxlength="10"
-            >
-
-            <button type="submit" class="admin-button">
-                + Add Parking Slot
-            </button>
-        </form>
-
-        <p id="slotMessage"></p>
-    </div>
-
-    <h3>Existing Parking Slots</h3>
-    <div id="adminSlots">Loading parking slots...</div>
-</section>
-
-        <section class="admin-section">
-            <h2>Customer Booking Details</h2>
-            <div id="adminBookings">Loading bookings...</div>
         </section>
 
-        <a href="/" class="back-link">Back to Customer Dashboard</a>
+
+        <!-- AVAILABILITY REPORT -->
+        <section class="admin-section dashboard-panel" id="availability">
+
+            <div class="section-heading">
+                <div>
+                    <p class="panel-kicker">PARKING ANALYTICS</p>
+                    <h2>Parking Availability Report</h2>
+                    <p>Select a booking period to view slot availability.</p>
+                </div>
+            </div>
+
+            <div class="admin-add-form">
+                <label for="reportDate">Booking Date</label>
+                <input type="date" id="reportDate" required>
+
+                <label for="reportStartTime">Start Time</label>
+                <input type="time" id="reportStartTime" required>
+
+                <label for="reportEndTime">End Time</label>
+                <input type="time" id="reportEndTime" required>
+
+                <button type="button" id="updateReportBtn" class="admin-button">
+                    Update Availability
+                </button>
+
+                <p id="reportMessage"></p>
+            </div>
+
+        </section>
+
+
+        <!-- SLOT MANAGEMENT -->
+        <section class="admin-section dashboard-panel" id="slot-management">
+
+            <div class="section-heading">
+                <div>
+                    <p class="panel-kicker">PARKING OPERATIONS</p>
+                    <h2>Parking Slot Management</h2>
+                    <p>Add and manage parking spaces.</p>
+                </div>
+            </div>
+
+            <div class="admin-add-form">
+                <h3>Add New Parking Slot</h3>
+
+                <form id="addSlotForm">
+                    <input
+                        type="text"
+                        id="newSlotNumber"
+                        placeholder="Enter slot number (Example: P21)"
+                        required
+                        maxlength="10"
+                    >
+
+                    <button type="submit" class="admin-button">
+                        + Add Parking Slot
+                    </button>
+                </form>
+
+                <p id="slotMessage"></p>
+            </div>
+
+            <h3>Existing Parking Slots</h3>
+            <div id="adminSlots">Loading parking slots...</div>
+
+        </section>
+
+
+        <!-- QR SCANNER -->
+        <section class="admin-section dashboard-panel" id="scanner">
+
+            <div class="section-heading">
+                <div>
+                    <p class="panel-kicker">SMART VERIFICATION</p>
+                    <h2>QR Parking Pass Scanner</h2>
+                    <p>Scan customer QR passes to verify bookings and check in vehicles.</p>
+                </div>
+            </div>
+
+            <div class="scanner-panel">
+                <div id="qr-reader" style="max-width:400px; margin:15px auto;"></div>
+
+                <h3>Manual QR Token Entry</h3>
+
+                <input
+                    type="text"
+                    id="manualQrToken"
+                    placeholder="Paste QR token here"
+                    style="width:100%; max-width:400px; padding:10px;"
+                >
+
+                <button type="button" id="verifyManualQrBtn" class="admin-button">
+                    Verify QR Pass
+                </button>
+
+                <div id="qrVerificationResult" style="margin-top:15px;"></div>
+            </div>
+
+        </section>
+
+
+        <!-- OVERSTAY DETECTION -->
+        <section class="admin-section dashboard-panel" id="overstay">
+
+            <div class="section-heading">
+                <div>
+                    <p class="panel-kicker">VEHICLE MONITORING</p>
+                    <h2>Vehicle Overstay Detection</h2>
+                    <p>Identify vehicles that have exceeded their booking time.</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Overstay Vehicles</h3>
+                <p id="overstayCount">0</p>
+            </div>
+
+            <button
+                type="button"
+                id="refreshOverstayBtn"
+                class="admin-button"
+            >
+                Refresh Overstay Report
+            </button>
+
+            <div id="overstayVehicles">
+                Loading overstay report...
+            </div>
+
+        </section>
+
+
+        <!-- ACTIVITY LOGS -->
+        <section class="admin-section dashboard-panel" id="activity">
+
+            <div class="section-heading">
+                <div>
+                    <p class="panel-kicker">SYSTEM HISTORY</p>
+                    <h2>Recent Activity</h2>
+                    <p>Track bookings, vehicle check-ins, check-outs and cancellations.</p>
+                </div>
+            </div>
+
+            <div id="activityLogs">
+                <p>Loading activity history...</p>
+            </div>
+
+        </section>
+
+
+        <!-- CUSTOMER BOOKINGS -->
+        <section class="admin-section dashboard-panel" id="bookings">
+
+            <div class="section-heading">
+                <div>
+                    <p class="panel-kicker">CUSTOMER MANAGEMENT</p>
+                    <h2>Customer Booking Details</h2>
+                    <p>View and manage customer reservations.</p>
+                </div>
+            </div>
+
+            <div id="adminBookings">
+                Loading bookings...
+            </div>
+
+        </section>
+
+
+        <footer class="dashboard-footer">
+            SmartPark Admin Dashboard · Parking Management System
+        </footer>
+
     </main>
 
-    <script src="/js/admin.js"></script>
+</div>
+
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+<script src="/js/admin.js"></script>
+
 </body>
 </html>

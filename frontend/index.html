@@ -1,63 +1,158 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SmartPark Dashboard</title>
+    <title>SmartPark | Smart Parking Dashboard</title>
 
     <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <header class="navbar">
-        <div class="logo">SmartPark</div>
-        <div class="tagline">Find. Book. Park. Easily.</div>
-    </header>
+<div class="app-shell">
 
-    <main class="container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
 
-        <section class="welcome">
+        <div class="logo">
+            Smart<span>Park.</span>
+        </div>
+
+        <p style="color:#91A9CC; font-size:11px; padding:0 14px; margin-bottom:12px;">
+            CUSTOMER MENU
+        </p>
+
+        
+<nav>
+    <a href="#dashboard" class="active">▦ &nbsp; Dashboard</a>
+    <a href="#parking">▤ &nbsp; Find Parking</a>
+    <a href="#booking-area">＋ &nbsp; Book Parking</a>
+    <a href="#qrPassSection">▧ &nbsp; QR Pass</a>
+</nav>
+
+<div class="sidebar-admin-link">
+    <a href="/admin-login">
+        <span>⚙</span>
+        <span>Admin Login</span>
+        <span class="admin-arrow">→</span>
+    </a>
+</div>
+
+        <div class="sidebar-bottom">
+            <div style="font-size:25px; margin-bottom:8px;">🚗</div>
+            <strong>SmartPark</strong>
+            <p style="font-size:11px; color:#A9BBD5;">
+                Smart Parking Management
+            </p>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
             <div>
-                <h1>Smart Parking Dashboard</h1>
-                <p>Find your perfect parking slot with ease.</p>
+                <h1>Customer Dashboard</h1>
+                <p>Manage your parking experience effortlessly.</p>
             </div>
 
             <button id="refreshButton" onclick="loadSlots()">
-                Refresh Slots
+                ↻ Refresh Slots
             </button>
+
+        </header>
+
+
+        <!-- WELCOME BANNER -->
+        <section class="hero-banner" id="dashboard">
+
+            <div>
+                <p style="color:#28D6C4; font-weight:700;">
+                    WELCOME TO SMARTPARK
+                </p>
+
+                <h1 style="font-size:30px; margin:10px 0;">
+                    Smart Parking Made Simple!
+                </h1>
+
+                <p style="color:#DCE8FF;">
+                    Find your perfect parking space, book instantly
+                    and enjoy a hassle-free parking experience.
+                </p>
+
+                <a href="#parking">
+                    <button style="background:#28D6C4; color:#071B3D; margin-top:18px;">
+                        Find Parking Space →
+                    </button>
+                </a>
+            </div>
+
+            <div style="font-size:75px; padding:10px 25px;">
+                🚘
+            </div>
+
         </section>
 
+
+        <!-- STATISTICS -->
         <section class="statistics">
 
             <div class="stat-card">
-                <h3>Total Slots</h3>
+                <h3>▦ Total Parking Slots</h3>
                 <p id="totalSlots">0</p>
+                <small style="color:#71809D;">Registered slots</small>
             </div>
 
             <div class="stat-card available-card">
-                <h3>Available</h3>
+                <h3>✓ Available Slots</h3>
                 <p id="availableSlots">0</p>
+                <small style="color:#71809D;">Ready for booking</small>
             </div>
 
             <div class="stat-card occupied-card">
-                <h3>Occupied</h3>
+                <h3>● Occupied Slots</h3>
                 <p id="occupiedSlots">0</p>
+                <small style="color:#71809D;">Currently occupied</small>
             </div>
 
             <div class="stat-card reserved-card">
-                <h3>Reserved</h3>
+                <h3>◷ Reserved Slots</h3>
                 <p id="reservedSlots">0</p>
+                <small style="color:#71809D;">Already reserved</small>
             </div>
 
         </section>
 
-        <section class="parking-section">
 
-            <h2>Parking Slot Availability</h2>
+        <!-- PARKING AVAILABILITY -->
+        <section class="parking-section" id="parking">
 
-            <div class="legend">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+
+                <div>
+                    <h2>Parking Slot Availability</h2>
+                    <p>Choose an available slot to make your reservation.</p>
+                </div>
+
+                <span class="status-badge status-confirmed">
+                    ● Live Availability
+                </span>
+
+            </div>
+
+            <div class="legend" style="margin-top:22px;">
                 <span><i class="dot green"></i> Available</span>
                 <span><i class="dot red"></i> Occupied</span>
                 <span><i class="dot orange"></i> Reserved</span>
@@ -68,79 +163,180 @@
             </div>
 
             <p id="message"></p>
-            <div id="bookingSection" class="booking-section" style="display: none;">
-
-    <h2>Book Your Parking Slot</h2>
-
-    <p id="selectedSlot"></p>
-
-    <form id="bookingForm">
-
-        <label for="customerName">Customer Name</label>
-        <input
-            type="text"
-            id="customerName"
-            placeholder="Enter your name"
-            required
-        >
-
-        <label for="vehicleNumber">Vehicle Number</label>
-        <input
-            type="text"
-            id="vehicleNumber"
-            placeholder="Example: KA09AB1234"
-            required
-        >
-
-        <label for="bookingDate">Booking Date</label>
-        <input
-            type="date"
-            id="bookingDate"
-            required
-        >
-
-        <label for="startTime">Start Time</label>
-        <input
-            type="time"
-            id="startTime"
-            required
-        >
-
-        <label for="endTime">End Time</label>
-        <input
-            type="time"
-            id="endTime"
-            required
-        >
-
-        <button type="submit">Confirm Booking</button>
-
-    </form>
-
-    <div id="bookingResult"></div>
-
-</div>
-<section class="my-bookings">
-
-    <h2>My Bookings</h2>
-
-    <p>View and manage your parking reservations.</p>
-
-    <div id="bookingHistory">
-        Loading bookings...
-    </div>
-
-</section>
 
         </section>
 
+
+        <!-- BOOKING AREA -->
+        <section id="booking-area">
+
+            <!-- BOOKING FORM CONTAINER -->
+            <section id="bookingSection" class="booking-section" style="display:none;">
+
+                <h2>Book Your Parking Slot</h2>
+
+                <p>Enter your details to confirm your parking reservation.</p>
+
+                <div style="background:#EAF2FF; padding:14px; border-radius:10px; margin-top:15px;">
+                    <p id="selectedSlot" style="font-weight:700; color:#174EA6;"></p>
+                </div>
+
+
+                <!-- BOOKING FORM -->
+                <form id="bookingForm">
+
+                    <label for="customerName">Customer Name</label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                    <label for="vehicleNumber">Vehicle Number</label>
+
+                    <input
+                        type="text"
+                        id="vehicleNumber"
+                        placeholder="Example: KA09AB1234"
+                        required
+                    >
+
+                    <label for="bookingDate">Booking Date</label>
+
+                    <input
+                        type="date"
+                        id="bookingDate"
+                        required
+                    >
+
+                    <label for="startTime">Start Time</label>
+
+                    <input
+                        type="time"
+                        id="startTime"
+                        required
+                    >
+
+                    <label for="endTime">End Time</label>
+
+                    <input
+                        type="time"
+                        id="endTime"
+                        required
+                    >
+
+                    <button type="submit">
+                        Confirm Booking →
+                    </button>
+
+                </form>
+
+
+                <!-- SMART SLOT RECOMMENDATION -->
+                <div class="recommendation-section">
+
+                    <button type="button" id="recommendBtn">
+                        ✨ Recommend a Parking Slot
+                    </button>
+
+                    <div id="recommendationResult"></div>
+
+                </div>
+
+
+                <!-- BOOKING RESULT -->
+                <div id="bookingResult"></div>
+
+            </section>
+
+        </section>
+
+
+        <!-- QR PARKING PASS -->
+        <section id="qrPassSection" class="qr-pass-section" style="display:none;">
+
+            <div class="qr-ticket">
+
+                <div class="qr-ticket-header">
+
+                    <div>
+                        <h2>SmartPark</h2>
+                        <p>Digital Parking Pass</p>
+                    </div>
+
+                    <span class="qr-confirmed">Confirmed</span>
+
+                </div>
+
+
+                <div class="qr-ticket-body">
+
+                    <div class="qr-ticket-details">
+
+                        <h3>Your Parking Reservation</h3>
+
+                        <div id="qrBookingDetails">
+                            Booking details will appear here.
+                        </div>
+
+                        <p class="qr-ticket-note">
+                            Please present this QR code at the parking entrance.
+                        </p>
+
+                    </div>
+
+
+                    <div class="qr-code-container">
+
+                        <img
+                            id="bookingQrImage"
+                            alt="SmartPark Booking QR Code"
+                        >
+
+                        <p>Scan to verify booking</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="qr-ticket-footer">
+                    <span>Thank you for choosing SmartPark!</span>
+                </div>
+
+
+                <button type="button" id="downloadQrBtn" class="download-qr-btn">
+                    ↓ Download QR Pass
+                </button>
+
+            </div>
+
+        </section>
+
+
+        
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <p>© 2026 SmartPark | Smart Parking Management System</p>
+
+            <p style="font-size:12px; margin-top:5px;">
+                Find. Book. Park. Easily.
+            </p>
+
+        </footer>
+
     </main>
 
-    <footer>
-        <p>SmartPark | Smart Parking Management System</p>
-    </footer>
+</div>
 
-    <script src="/js/app.js"></script>
+
+<!-- SMARTPARK CUSTOMER JAVASCRIPT -->
+<script src="/js/app.js"></script>
 
 </body>
 </html>

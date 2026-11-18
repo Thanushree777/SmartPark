@@ -3,8 +3,20 @@ services:
   smartpark:
     build: .
     container_name: smartpark-app
+
     ports:
-      - "5000:5000"
+      - "5002:5002"
+
+    env_file:
+      - .env
+
+    environment:
+      PORT: "5002"
+      SMARTPARK_ENV: "production"
+      SMARTPARK_DATABASE_PATH: "/data/smartpark.db"
+      SMARTPARK_COOKIE_SECURE: "false"
+
     volumes:
-      - ./smartpark.db:/app/smartpark.db
+      - ./smartpark.db:/data/smartpark.db
+
     restart: unless-stopped

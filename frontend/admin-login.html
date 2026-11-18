@@ -8,46 +8,78 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
+<body class="login-page">
 
     <div class="login-container">
 
-        <div class="login-card">
+        <div class="login-brand">
+            <div class="brand-heading">
+    <div class="brand-icon">P</div>
+    <div>
+        <h1>SmartPark</h1>
+        <p>Intelligent Parking Management System</p>
+    </div>
+</div>
 
-            <h1>SmartPark</h1>
-            <h2>Admin Login</h2>
+            <div class="login-illustration">
+                <div class="parking-symbol">P</div>
+                <h2>Smart Parking.<br>Smarter Management.</h2>
+                <p>Manage parking operations with confidence.</p>
+            </div>
 
-            <p>Sign in to manage parking operations.</p>
+            <div class="brand-footer">
+                SECURE ADMIN PORTAL
+            </div>
+        </div>
 
-            <form id="adminLoginForm">
+        <div class="login-form-area">
 
-                <label for="username">Admin Username</label>
+            <div class="login-card">
 
-                <input
-                    type="text"
-                    id="username"
-                    placeholder="Enter username"
-                    required
-                >
+                <span class="login-tag">ADMINISTRATOR ACCESS</span>
 
-                <label for="password">Password</label>
+                <h2>Welcome Back!</h2>
+                <p class="login-subtitle">
+                    Sign in to manage your parking operations.
+                </p>
 
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter password"
-                    required
-                >
+                <form id="adminLoginForm">
 
-                <button type="submit" class="admin-button">
-                    Login
-                </button>
+                    <label for="username">Admin Username</label>
 
-                <p id="loginMessage"></p>
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter username"
+                        required
+                    >
 
-            </form>
+                    <label for="password">Password</label>
 
-            <a href="/">Back to Customer Dashboard</a>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        required
+                    >
+
+                    <button type="submit" class="admin-button">
+                        Sign In <span>→</span>
+                    </button>
+
+                    <p id="loginMessage"></p>
+
+                </form>
+
+                <a class="customer-link" href="/">
+                    ← Back to Customer Dashboard
+                </a>
+
+            </div>
+
+            <p class="login-copyright">
+                © 2026 SmartPark. All rights reserved.
+            </p>
 
         </div>
 

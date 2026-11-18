@@ -1,7 +1,19 @@
+
+# Python
 .venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+
+# Environment secrets
 .env
-smartpark.db
+.env.*
+!.env.example
+
+# Database
+*.db
+data/
+
+# Operating system
 .DS_Store
+Thumbs.db

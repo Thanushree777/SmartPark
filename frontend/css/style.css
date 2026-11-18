@@ -1,119 +1,224 @@
+
+/* =========================================
+   SMARTPARK PREMIUM UI DESIGN
+   Navy Blue + Royal Blue + Teal
+   ========================================= */
+
+:root {
+    --navy: #071B3D;
+    --navy-light: #102B55;
+    --blue: #174EA6;
+    --blue-light: #2474D8;
+    --teal: #28D6C4;
+
+    --background: #F1F4FF;
+    --white: #FFFFFF;
+    --text: #10264D;
+    --muted: #71809D;
+
+    --available: #19B981;
+    --occupied: #F5A623;
+    --reserved: #EF476F;
+
+    --border: #E2E8F5;
+    --shadow: 0 5px 20px rgba(15, 39, 83, 0.07);
+    --radius: 16px;
+}
+
+/* RESET */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #F3F4F6;
-    color: #1F2937;
+html {
+    scroll-behavior: smooth;
 }
 
+body {
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* GENERAL HEADINGS */
+
+h1, h2, h3, h4 {
+    color: var(--text);
+    line-height: 1.3;
+}
+
+p {
+    color: var(--muted);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* NAVBAR */
+
 .navbar {
-    background: #14532D;
-    color: white;
-    padding: 22px 7%;
+    background: var(--navy);
+    color: var(--white);
+    padding: 18px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
+    box-shadow: 0 3px 12px rgba(7, 27, 61, 0.15);
 }
 
 .logo {
     font-size: 27px;
-    font-weight: bold;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--teal);
 }
 
 .tagline {
+    color: #DCE8FF;
     font-size: 14px;
 }
 
+/* MAIN CONTAINER */
+
 .container {
-    width: 86%;
-    max-width: 1200px;
-    margin: 35px auto;
+    width: 92%;
+    max-width: 1450px;
+    margin: 30px auto;
 }
+
+/* WELCOME SECTION */
 
 .welcome {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 30px;
+    gap: 20px;
+    margin-bottom: 28px;
 }
 
 .welcome h1 {
-    color: #14532D;
-    margin-bottom: 10px;
+    color: var(--navy);
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 5px;
 }
 
+.welcome p {
+    color: var(--muted);
+}
+
+/* BUTTONS */
+
 button {
-    background: #16A34A;
+    background: linear-gradient(135deg, var(--blue-light), var(--blue));
     color: white;
     border: none;
-    padding: 12px 20px;
-    border-radius: 7px;
+    padding: 12px 22px;
+    border-radius: 10px;
     cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.25s ease;
 }
 
 button:hover {
-    background: #14532D;
+    background: linear-gradient(135deg, var(--blue), var(--navy));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(23, 78, 166, 0.2);
 }
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* STATISTICS */
 
 .statistics {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 18px;
-    margin-bottom: 35px;
+    margin-bottom: 25px;
 }
 
 .stat-card {
-    background: white;
+    background: var(--white);
     padding: 23px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 9px 24px rgba(15, 39, 83, 0.11);
 }
 
 .stat-card h3 {
     font-size: 15px;
-    color: #6B7280;
+    font-weight: 600;
+    color: var(--muted);
 }
 
 .stat-card p {
-    font-size: 30px;
-    font-weight: bold;
-    margin-top: 12px;
+    font-size: 31px;
+    font-weight: 800;
+    margin-top: 9px;
+    color: var(--navy);
 }
 
 .available-card p {
-    color: #16A34A;
+    color: var(--available);
 }
 
 .occupied-card p {
-    color: #DC2626;
+    color: var(--occupied);
 }
 
 .reserved-card p {
-    color: #F59E0B;
+    color: var(--reserved);
 }
 
+/* PARKING SECTION */
+
 .parking-section {
-    background: white;
+    background: var(--white);
     padding: 25px;
-    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 25px;
 }
 
 .parking-section h2 {
-    color: #14532D;
-    margin-bottom: 20px;
+    color: var(--navy);
+    font-size: 21px;
+    margin-bottom: 18px;
 }
+
+/* PARKING LEGEND */
 
 .legend {
     display: flex;
     gap: 25px;
     flex-wrap: wrap;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
     font-size: 14px;
+    color: var(--text);
 }
 
 .dot {
@@ -121,71 +226,649 @@ button:hover {
     width: 11px;
     height: 11px;
     border-radius: 50%;
-    margin-right: 5px;
+    margin-right: 6px;
 }
 
 .green {
-    background: #16A34A;
+    background: var(--available);
 }
 
 .red {
-    background: #DC2626;
+    background: var(--reserved);
 }
 
 .orange {
-    background: #F59E0B;
+    background: var(--occupied);
 }
+
+/* PARKING SLOT GRID */
 
 .slot-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
 }
 
 .slot {
-    padding: 25px 10px;
+    padding: 20px 10px;
     text-align: center;
-    border-radius: 9px;
-    font-weight: bold;
-    border: 2px solid transparent;
+    border-radius: 11px;
+    font-weight: 700;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: 0.25s ease;
 }
 
 .slot.available {
-    background: #DCFCE7;
-    color: #166534;
-    border-color: #16A34A;
+    background: #E2F8F1;
+    color: #07875D;
+    border-color: #8EDCC5;
 }
 
 .slot.occupied {
-    background: #FEE2E2;
-    color: #991B1B;
-    border-color: #DC2626;
+    background: #FFF0D9;
+    color: #B76A00;
+    border-color: #F5C36D;
 }
 
 .slot.reserved {
-    background: #FEF3C7;
-    color: #92400E;
-    border-color: #F59E0B;
+    background: #FFE8EE;
+    color: #D32F55;
+    border-color: #F2A0B2;
 }
 
-#message {
-    margin-top: 20px;
-    color: #DC2626;
+.slot:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(15, 39, 83, 0.1);
 }
+
+/* MESSAGES */
+
+#message {
+    margin-top: 18px;
+    color: var(--reserved);
+    font-weight: 600;
+}
+
+#bookingResult {
+    margin-top: 20px;
+    font-weight: 700;
+    color: var(--blue);
+}
+
+#slotMessage {
+    color: var(--blue);
+    font-weight: 700;
+    margin-top: 12px;
+}
+
+/* BOOKING SECTION */
+
+.booking-section {
+    background: var(--white);
+    padding: 28px;
+    margin-top: 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.booking-section h2 {
+    color: var(--navy);
+    margin-bottom: 18px;
+}
+
+.booking-section label {
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 7px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.booking-section input,
+.admin-add-form input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    font-size: 15px;
+    background: #FAFBFF;
+    color: var(--text);
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.booking-section input:focus,
+.admin-add-form input:focus {
+    border-color: var(--blue-light);
+    box-shadow: 0 0 0 3px rgba(36, 116, 216, 0.1);
+}
+
+.booking-section button {
+    margin-top: 20px;
+}
+
+/* MY BOOKINGS */
+
+.my-bookings {
+    background: var(--white);
+    padding: 28px;
+    margin-top: 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.my-bookings h2 {
+    color: var(--navy);
+    margin-bottom: 8px;
+    font-size: 23px;
+}
+
+.my-bookings > p {
+    color: var(--muted);
+    margin-bottom: 22px;
+}
+
+.booking-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 17px;
+    transition: 0.25s ease;
+}
+
+.booking-item:hover {
+    box-shadow: var(--shadow);
+    border-color: #B8C9E8;
+}
+
+.booking-item h3 {
+    color: var(--navy);
+    margin-bottom: 10px;
+}
+
+.booking-item p {
+    margin: 7px 0;
+    color: var(--muted);
+}
+
+.booking-item button {
+    margin-top: 12px;
+}
+
+.booking-item button,
+.booking-item button.cancel-button {
+    background: linear-gradient(135deg, #F05265, #D92D45);
+}
+
+.booking-item button:hover {
+    background: #B91C36;
+}
+
+.cancelled-label {
+    color: var(--reserved);
+    font-weight: 800;
+}
+
+.confirmed-label {
+    color: var(--available);
+    font-weight: 800;
+}
+
+/* ADMIN HEADER */
+
+.header {
+    background: linear-gradient(120deg, var(--navy), var(--blue));
+    color: var(--white);
+    padding: 25px 35px;
+    text-align: left;
+    border-radius: 0 0 16px 16px;
+    box-shadow: var(--shadow);
+}
+
+.header h1 {
+    color: var(--white);
+    margin-bottom: 5px;
+    font-size: 28px;
+}
+
+.header p {
+    color: #DCE8FF;
+}
+
+/* ADMIN SECTIONS */
+
+.admin-section {
+    background: var(--white);
+    padding: 26px;
+    margin: 24px 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.admin-section h2 {
+    color: var(--navy);
+    margin-bottom: 20px;
+    font-size: 21px;
+}
+
+/* ADMIN STATISTICS */
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.stats-container .stat-card {
+    background: #F7F9FF;
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.stats-container .stat-card h3 {
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.stats-container .stat-card p {
+    font-size: 32px;
+    color: var(--blue);
+}
+
+/* ADMIN BOOKING ITEMS */
+
+.admin-section .booking-item {
+    background: #F8FAFF;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 13px;
+}
+
+.admin-section .booking-item h3 {
+    color: var(--navy);
+}
+
+/* BACK LINK */
+
+.back-link {
+    display: inline-block;
+    background: var(--blue);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 9px;
+    margin: 15px 0;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.back-link:hover {
+    background: var(--navy);
+}
+
+/* ADMIN SLOT MANAGEMENT */
+
+.admin-add-form {
+    background: #F3F6FF;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    margin-bottom: 25px;
+}
+
+.admin-add-form input {
+    width: 65%;
+    margin: 8px 0;
+}
+
+.admin-button {
+    background: linear-gradient(135deg, var(--blue-light), var(--blue));
+    color: white;
+    border: none;
+    padding: 12px 19px;
+    border-radius: 9px;
+    cursor: pointer;
+    margin: 5px;
+    font-weight: 700;
+}
+
+.admin-button:hover {
+    background: var(--navy);
+}
+
+/* RECOMMENDATION CARD */
+
+.recommendation-section {
+    margin-top: 22px;
+    text-align: center;
+}
+
+#recommendBtn {
+    background: linear-gradient(135deg, var(--blue-light), var(--blue));
+    color: white;
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+#recommendBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(23, 78, 166, 0.25);
+}
+
+.recommended-card {
+    margin-top: 18px;
+    padding: 23px;
+    background: linear-gradient(135deg, #E9F4FF, #FFFFFF);
+    border: 1px solid #BDD6F5;
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+}
+
+.recommended-card h3 {
+    color: var(--blue);
+}
+
+.recommended-card h2 {
+    font-size: 36px;
+    color: var(--navy);
+    margin: 10px;
+}
+
+/* SIDEBAR LAYOUT
+   Classes for the new dashboard HTML layouts */
+
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.sidebar {
+    width: 220px;
+    min-width: 220px;
+    background: linear-gradient(180deg, #071B3D, #102B55);
+    color: white;
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.sidebar .logo {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 35px;
+    color: white;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar nav a,
+.sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    color: #E1EAFE;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active,
+.sidebar .nav-link.active {
+    background: linear-gradient(100deg, #2474D8, #174EA6);
+    color: white;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 25px;
+    text-align: center;
+    color: #DCE8FF;
+}
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 28px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.topbar h1 {
+    color: var(--navy);
+}
+
+.topbar p {
+    color: var(--muted);
+}
+
+/* DASHBOARD PANELS */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.dashboard-panel {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: var(--shadow);
+}
+
+.dashboard-panel h2 {
+    font-size: 19px;
+    margin-bottom: 15px;
+    color: var(--navy);
+}
+
+/* QUICK ACTIONS */
+
+.quick-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.quick-actions a,
+.quick-actions button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 13px;
+    border-radius: 10px;
+}
+
+/* BANNER */
+
+.hero-banner {
+    width: 100%;
+    min-height: 150px;
+    padding: 28px;
+    margin-bottom: 22px;
+    border-radius: 16px;
+    color: white;
+    background: linear-gradient(110deg, #071B3D, #174EA6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    overflow: hidden;
+}
+
+.hero-banner h1,
+.hero-banner h2,
+.hero-banner p {
+    color: white;
+}
+
+/* STATUS BADGES */
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 13px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.status-confirmed {
+    background: #D7F8EA;
+    color: #07875D;
+}
+
+.status-pending {
+    background: #FFF0D9;
+    color: #B76A00;
+}
+
+.status-cancelled {
+    background: #FFE8EE;
+    color: #D32F55;
+}
+
+/* QR SCANNER */
+
+.scanner-panel {
+    background: linear-gradient(145deg, #071B3D, #102B55);
+    color: white;
+    padding: 35px;
+    border-radius: 16px;
+    text-align: center;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.scanner-panel h2,
+.scanner-panel p {
+    color: white;
+}
+
+.scan-result {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+/* FOOTER */
 
 footer {
     text-align: center;
     padding: 25px;
-    color: #6B7280;
+    color: var(--muted);
 }
 
-@media (max-width: 750px) {
+/* INPUTS */
+
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--blue-light);
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 1050px) {
     .statistics {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        width: 190px;
+        min-width: 190px;
+    }
+}
+
+@media (max-width: 750px) {
+    .app-shell {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
+        padding: 15px;
+    }
+
+    .sidebar .logo {
+        margin-bottom: 15px;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .sidebar nav a,
+    .sidebar .nav-link {
+        padding: 9px 11px;
+        font-size: 13px;
+    }
+
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .main-content {
+        padding: 17px;
+    }
+
+    .container {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+    .statistics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
     .slot-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .welcome {
@@ -198,223 +881,2053 @@ footer {
         gap: 10px;
     }
 
-    .container {
-        width: 92%;
-    }
-}
-.booking-section {
-    background: white;
-    padding: 25px;
-    margin-top: 30px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-
-.booking-section h2 {
-    color: #14532D;
-    margin-bottom: 15px;
-}
-
-.booking-section label {
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 7px;
-    font-weight: bold;
-}
-
-.booking-section input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #D1D5DB;
-    border-radius: 6px;
-    font-size: 15px;
-}
-
-.booking-section button {
-    margin-top: 20px;
-}
-
-#bookingResult {
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-.slot {
-    cursor: pointer;
-}
-
-.slot:hover {
-    transform: translateY(-3px);
-}
-.my-bookings {
-    background: white;
-    padding: 25px;
-    margin-top: 30px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-
-.my-bookings h2 {
-    color: #14532D;
-    margin-bottom: 10px;
-}
-
-.my-bookings > p {
-    color: #6B7280;
-    margin-bottom: 20px;
-}
-
-.booking-item {
-    border: 1px solid #D1D5DB;
-    border-radius: 9px;
-    padding: 18px;
-    margin-bottom: 15px;
-}
-
-.booking-item p {
-    margin: 7px 0;
-}
-
-.booking-item button {
-    margin-top: 10px;
-    background: #DC2626;
-}
-
-.booking-item button:hover {
-    background: #991B1B;
-}
-
-.cancelled-label {
-    color: #DC2626;
-    font-weight: bold;
-}
-
-.confirmed-label {
-    color: #16A34A;
-    font-weight: bold;
-}
-/* ===== SMARTPARK ADMIN DASHBOARD ===== */
-
-.header {
-    background: #14532D;
-    color: white;
-    padding: 25px 35px;
-    text-align: center;
-}
-
-.header h1 {
-    margin: 0;
-    font-size: 30px;
-}
-
-.header p {
-    margin-bottom: 0;
-}
-
-.admin-section {
-    background: white;
-    padding: 25px;
-    margin: 25px 0;
-    border-radius: 14px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-}
-
-.admin-section h2 {
-    color: #14532D;
-    margin-top: 0;
-    margin-bottom: 20px;
-}
-
-.stats-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-top: 25px;
-}
-
-.stat-card {
-    background: #F0FDF4;
-    border: 1px solid #BBF7D0;
-    padding: 25px;
-    border-radius: 14px;
-    text-align: center;
-}
-
-.stat-card h3 {
-    color: #14532D;
-    font-size: 17px;
-}
-
-.stat-card p {
-    font-size: 32px;
-    font-weight: bold;
-    color: #16A34A;
-    margin-bottom: 0;
-}
-
-.booking-item {
-    background: #F9FAFB;
-    border: 1px solid #E5E7EB;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 12px;
-}
-
-.booking-item h3 {
-    color: #14532D;
-}
-
-.back-link {
-    display: inline-block;
-    background: #14532D;
-    color: white;
-    text-decoration: none;
-    padding: 12px 22px;
-    border-radius: 8px;
-    margin: 15px 0;
-}
-
-.back-link:hover {
-    background: #16A34A;
-}
-
-@media (max-width: 700px) {
     .stats-container {
         grid-template-columns: 1fr;
     }
+
+    .admin-add-form input {
+        width: 100%;
+    }
+
+    .hero-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
-/* Admin slot management controls */
+
+@media (max-width: 420px) {
+    .statistics {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        padding: 17px;
+    }
+
+    .parking-section,
+    .booking-section,
+    .my-bookings,
+    .admin-section {
+        padding: 17px;
+    }
+
+    .welcome h1 {
+        font-size: 24px;
+    }
+}
+
+/* =====================================
+   SMARTPARK ADMIN DASHBOARD ENHANCEMENTS
+===================================== */
+
+.sidebar-label {
+    color: #8FA6C9;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin: 30px 12px 12px;
+}
+
+.sidebar nav a {
+    display: block;
+    color: #D5E1F5;
+    text-decoration: none;
+    padding: 13px 15px;
+    margin: 5px 0;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: 0.25s ease;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: linear-gradient(135deg, #174EA6, #2474D8);
+    color: white;
+    transform: translateX(3px);
+}
+
+.sidebar-bottom {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sidebar-bottom a {
+    color: #D5E1F5;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.topbar-subtitle,
+.panel-kicker {
+    color: #2474D8;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    margin-bottom: 7px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.status-badge {
+    background: #E5F8F1;
+    color: #16865C;
+    padding: 9px 15px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    color: #10264D;
+    margin: 5px 0;
+}
+
+.section-heading p {
+    color: #71809D;
+}
+
+.dashboard-panel {
+    background: #FFFFFF;
+    border: 1px solid #E4EAF5;
+    border-radius: 18px;
+    padding: 25px;
+    margin: 25px 0;
+    box-shadow: 0 7px 25px rgba(20, 55, 100, 0.05);
+}
+
+.admin-section h3 {
+    color: #10264D;
+    margin: 15px 0;
+}
 
 .admin-add-form {
-    background: #F0FDF4;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 25px;
+    background: #F6F8FD;
+    padding: 22px;
+    border-radius: 14px;
+    border: 1px solid #E7ECF5;
 }
 
-.admin-add-form input {
+.admin-add-form label {
+    display: block;
+    margin: 12px 0 6px;
+    color: #526582;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.admin-add-form input,
+#manualQrToken {
+    border: 1px solid #DCE4F1;
+    border-radius: 9px;
     padding: 12px;
-    width: 65%;
-    border: 1px solid #D1D5DB;
-    border-radius: 8px;
-    margin: 8px 0;
+    background: #FFFFFF;
+    color: #10264D;
+    outline: none;
+    transition: 0.2s;
+}
+
+.admin-add-form input:focus,
+#manualQrToken:focus {
+    border-color: #2474D8;
+    box-shadow: 0 0 0 3px rgba(36, 116, 216, 0.1);
 }
 
 .admin-button {
-    background: #14532D;
+    background: linear-gradient(135deg, #174EA6, #2474D8);
     color: white;
     border: none;
-    padding: 11px 18px;
-    border-radius: 7px;
+    padding: 12px 20px;
+    border-radius: 9px;
+    font-weight: 700;
     cursor: pointer;
-    margin: 5px;
+    transition: 0.2s;
 }
 
 .admin-button:hover {
-    background: #16A34A;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(36, 116, 216, 0.2);
 }
 
-#slotMessage {
-    color: #14532D;
+.booking-item {
+    background: #F8FAFF;
+    border: 1px solid #E6ECF6;
+    border-radius: 12px;
+    padding: 18px;
+    margin: 12px 0;
+}
+
+.booking-item h3 {
+    color: #174EA6;
+    margin-top: 0;
+}
+
+.booking-item p {
+    color: #526582;
+    line-height: 1.7;
+}
+
+.booking-item button {
+    margin: 8px 8px 0 0;
+}
+
+.scanner-panel {
+    background: #F5F8FF;
+    border: 1px dashed #B8CBE9;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+}
+
+#qrVerificationResult {
+    background: #EAF2FF;
+    padding: 14px;
+    border-radius: 10px;
+    color: #174EA6;
+    overflow-wrap: anywhere;
+}
+
+#overstayVehicles .booking-item {
+    border-left: 4px solid #E49B38;
+}
+
+#overstayCount {
+    color: #D97706;
+}
+
+#activityLogs .booking-item {
+    border-left: 4px solid #2474D8;
+}
+
+#adminSlots .booking-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.dashboard-footer {
+    text-align: center;
+    color: #8A98AF;
+    padding: 25px 10px;
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .dashboard-panel {
+        padding: 17px;
+    }
+
+    .section-heading {
+        display: block;
+    }
+
+    .topbar {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    #adminSlots .booking-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+/* SMARTPARK LIGHT PREMIUM THEME */
+
+:root {
+    --background: #F4F7FC;
+    --white: #FFFFFF;
+    --text: #10264D;
+    --muted: #344563;
+    --blue: #174EA6;
+    --blue-light: #EAF1FC;
+}
+
+/* Main page */
+body {
+    background: #F4F7FC;
+    color: #10264D;
+}
+
+/* Main headings */
+h1, h2, h3, h4 {
+    color: #10264D;
+}
+
+/* Body text */
+p, label, small {
+    color: #344563;
+}
+
+/* Dashboard panels */
+.dashboard-panel,
+.admin-section {
+    background: #FFFFFF;
+    border: 1px solid #E0E8F5;
+    box-shadow: 0 5px 18px rgba(16, 38, 77, 0.045);
+}
+
+/* Statistics cards */
+.stat-card {
+    background: #EDF3FD;
+    border: 1px solid #DCE7F8;
+}
+
+.stat-card:nth-child(2) {
+    background: #EAF6F1;
+}
+
+.stat-card:nth-child(3) {
+    background: #FFF5E8;
+}
+
+.stat-card:nth-child(4) {
+    background: #F0EEFC;
+}
+
+/* Booking and activity cards */
+.booking-item {
+    background: #F3F6FC;
+    border: 1px solid #DFE7F3;
+}
+
+/* Form backgrounds */
+.admin-add-form,
+.scanner-panel {
+    background: #F1F5FC;
+    border: 1px solid #E0E8F5;
+}
+
+/* Input text */
+input, select, textarea {
+    color: #10264D;
+}
+
+/* Sidebar text remains light */
+.sidebar nav a,
+.sidebar-bottom a {
+    color: #E5EDFA;
+}
+
+/* CUSTOMER DASHBOARD - REALISTIC CAR HERO */
+
+.customer-hero {
+    min-height: 250px;
+    padding: 35px;
+    border-radius: 18px;
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(240, 246, 255, 0.98) 0%,
+            rgba(240, 246, 255, 0.91) 38%,
+            rgba(240, 246, 255, 0.12) 75%
+        ),
+        url("https://images.unsplash.com/photo-1617209680736-7a6202c498a1?fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000");
+    background-size: cover;
+    background-position: center 55%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #DCE7F8;
+    box-shadow: 0 8px 24px rgba(16, 38, 77, 0.07);
+}
+
+.customer-hero h1 {
+    color: #10264D;
+    font-weight: 800;
+}
+
+.customer-hero h2 {
+    color: #203B65;
+}
+
+.customer-hero p {
+    color: #344563;
+}
+
+@media (max-width: 768px) {
+    .customer-hero {
+        min-height: 220px;
+        padding: 22px;
+        background-position: 62% center;
+    }
+}
+/* DARKER TEXT AND SOFT CARD BACKGROUNDS */
+
+.container h1,
+.container h2,
+.container h3 {
+    color: #10264D;
+}
+
+.container p,
+.container label {
+    color: #344563;
+}
+
+.stat-card {
+    background: #EDF3FD;
+    border: 1px solid #DCE7F8;
+}
+
+.parking-section,
+.booking-section,
+.my-bookings,
+.dashboard-panel {
+    background: #F8FAFF;
+    border: 1px solid #DFE8F5;
+}
+
+.booking-item {
+    background: #F0F4FB;
+    border: 1px solid #DDE6F3;
+}
+
+input, select, textarea {
+    color: #172D50;
+    background: #FFFFFF;
+}
+
+/* ===================================
+   SMARTPARK PARKING SLOT REDESIGN
+=================================== */
+
+.slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+    gap: 16px;
+    margin-top: 22px;
+}
+
+.slot {
+    min-height: 105px;
+    border-radius: 15px;
+    padding: 18px 10px;
+    text-align: center;
+    border: 1px solid #DCE6F5;
+    background: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(16, 38, 77, 0.05);
+    transition: all 0.25s ease;
+}
+
+.slot h3 {
+    color: #10264D;
+    font-size: 21px;
+    margin: 8px 0;
+}
+
+.slot p {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Available */
+.slot.available {
+    background: #EAF7F0;
+    border-color: #BCE6CE;
+}
+
+.slot.available p {
+    color: #167747;
+}
+
+/* Occupied */
+.slot.occupied {
+    background: #FFF0F0;
+    border-color: #F2CACA;
+}
+
+.slot.occupied p {
+    color: #B83232;
+}
+
+/* Reserved */
+.slot.reserved {
+    background: #FFF6E8;
+    border-color: #F2D9AD;
+}
+
+.slot.reserved p {
+    color: #A7650A;
+}
+
+/* Hover effect */
+.slot.available:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 9px 20px rgba(22, 119, 71, 0.12);
+    cursor: pointer;
+}
+
+/* ===================================
+   SMARTPARK BOOKING CARD DESIGN
+=================================== */
+
+.booking-item {
+    background: #F4F7FD;
+    border: 1px solid #DFE7F3;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 4px 12px rgba(16, 38, 77, 0.04);
+    transition: 0.25s ease;
+}
+
+.booking-item:hover {
+    border-color: #B7CBEA;
+    box-shadow: 0 7px 18px rgba(16, 38, 77, 0.08);
+}
+
+.booking-item h3 {
+    color: #12366A;
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.booking-item p {
+    color: #344563;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.confirmed-label {
+    color: #167747;
+    background: #E5F6EC;
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.cancelled-label {
+    color: #B83232;
+    background: #FDECEC;
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* ===================================
+   SMARTPARK BUTTON DESIGN
+=================================== */
+
+button,
+.admin-button {
+    border-radius: 10px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.booking-item button {
+    margin: 8px 8px 0 0;
+    padding: 10px 17px;
+    border: none;
+    background: #174EA6;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.booking-item button:hover {
+    background: #0D3475;
+    transform: translateY(-2px);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 3px solid #82B4F4;
+    outline-offset: 3px;
+}
+
+/* ===================================
+   RESPONSIVE SMARTPARK DASHBOARD
+=================================== */
+
+@media (max-width: 600px) {
+    .slot-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .booking-item {
+        padding: 15px;
+    }
+
+    .booking-item button {
+        width: 100%;
+        margin: 6px 0;
+    }
+
+    .dashboard-panel {
+        padding: 15px;
+    }
+}
+
+/* =====================================
+   SMARTPARK DIGITAL QR PARKING TICKET
+===================================== */
+
+.qr-pass-section {
+    margin: 30px 0;
+}
+
+.qr-ticket {
+    max-width: 750px;
+    margin: auto;
+    padding: 28px;
+    background: #FFFFFF;
+    border: 1px solid #DCE7F5;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(16, 38, 77, 0.08);
+}
+
+.qr-ticket-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px dashed #C8D6E9;
+    padding-bottom: 18px;
+}
+
+.qr-ticket-header h2 {
+    color: #12366A;
+    margin: 0;
+}
+
+.qr-ticket-header p {
+    color: #526582;
+    margin: 5px 0 0;
+}
+
+.qr-confirmed {
+    background: #E5F6EC;
+    color: #167747;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.qr-ticket-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    padding: 25px 0;
+}
+
+.qr-ticket-details {
+    flex: 1;
+}
+
+.qr-ticket-details h3 {
+    color: #10264D;
+}
+
+.qr-ticket-details p {
+    color: #344563;
+    line-height: 1.7;
+}
+
+.qr-code-container {
+    background: #F0F5FD;
+    border: 1px solid #DCE7F5;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    min-width: 180px;
+}
+
+.qr-code-container img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    display: block;
+}
+
+.qr-code-container p {
+    color: #344563;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.qr-ticket-footer {
+    border-top: 1px dashed #C8D6E9;
+    padding: 18px 0;
+    color: #526582;
+    text-align: center;
+}
+
+.download-qr-btn {
+    display: block;
+    margin: 10px auto 0;
+    background: #174EA6;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 13px 25px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.download-qr-btn:hover {
+    background: #0D3475;
+}
+
+@media (max-width: 600px) {
+    .qr-ticket-body {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .qr-code-container {
+        align-self: center;
+    }
+
+    .qr-ticket {
+        padding: 18px;
+    }
+}
+
+/* =====================================
+   SMARTPARK CUSTOMER BOOKING HISTORY
+===================================== */
+
+.booking-history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.booking-history-header h2 {
+    color: #10264D;
+    font-size: 25px;
+    margin: 8px 0;
+}
+
+.booking-history-header p {
+    color: #344563;
+    font-size: 14px;
+}
+
+.booking-history-icon {
+    width: 55px;
+    height: 55px;
+    display: grid;
+    place-items: center;
+    background: #E7F0FF;
+    color: #174EA6;
+    border-radius: 15px;
+    font-size: 27px;
+}
+
+#bookingHistory {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+#bookingHistory .booking-item {
+    background: #F3F7FF;
+    border: 1px solid #DCE7F5;
+    border-radius: 16px;
+    padding: 20px;
+    margin: 0;
+    transition: 0.25s ease;
+}
+
+#bookingHistory .booking-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 20px rgba(16, 38, 77, 0.08);
+}
+
+#bookingHistory .booking-item h3 {
+    color: #174EA6;
+    font-size: 17px;
+    border-bottom: 1px solid #DCE7F5;
+    padding-bottom: 12px;
+}
+
+#bookingHistory .booking-item p {
+    color: #344563;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+#bookingHistory .confirmed-label {
+    display: inline-block;
+    background: #E2F5EA;
+    color: #167747;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 700;
+}
+
+#bookingHistory .cancelled-label {
+    display: inline-block;
+    background: #FDECEC;
+    color: #B83232;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 700;
+}
+
+/* Cancellation button */
+#bookingHistory .booking-item button {
+    background: #FFF0F0;
+    color: #B83232;
+    border: 1px solid #F2CCCC;
+    border-radius: 9px;
+    padding: 10px 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#bookingHistory .booking-item button:hover {
+    background: #B83232;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    #bookingHistory {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-history-header h2 {
+        font-size: 21px;
+    }
+}
+
+/* =================================
+   SMARTPARK - CUSTOMER BOOKING FORM
+================================= */
+
+.booking-section {
+    background: #ffffff;
+    border: 1px solid #dce6f4;
+    border-radius: 18px;
+    padding: 28px;
+    margin: 25px 0;
+    box-shadow: 0 5px 20px rgba(20, 55, 100, 0.06);
+}
+
+.booking-section h2 {
+    color: #10264d;
+    font-size: 24px;
+    font-weight: 750;
+    margin-bottom: 8px;
+}
+
+#selectedSlot {
+    display: inline-block;
+    background: #eaf2ff;
+    color: #174ea6;
+    border-radius: 9px;
+    padding: 10px 15px;
+    font-weight: 700;
+    margin: 12px 0 20px;
+}
+
+#bookingForm {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+#bookingForm label {
+    display: block;
+    color: #203657;
+    font-weight: 650;
+    margin-bottom: 8px;
+}
+
+#bookingForm input,
+#bookingForm select {
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 14px;
+    border: 1px solid #cbd8e9;
+    border-radius: 10px;
+    background: #f8faff;
+    color: #10264d;
+    font-size: 15px;
+    outline: none;
+}
+
+#bookingForm input:focus,
+#bookingForm select:focus {
+    border-color: #2874d0;
+    box-shadow: 0 0 0 3px rgba(40, 116, 208, 0.12);
+}
+
+#bookingForm button,
+#bookingForm input[type="submit"] {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-height: 49px;
+    border: none;
+    border-radius: 11px;
+    background: #174ea6;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#bookingForm button:hover,
+#bookingForm input[type="submit"]:hover {
+    background: #0e397e;
+    transform: translateY(-1px);
+}
+
+#bookingResult {
+    color: #18385f;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+@media (max-width: 650px) {
+    .booking-section {
+        padding: 18px;
+    }
+
+    #bookingForm {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =================================
+   SMARTPARK - PREMIUM PARKING SLOTS
+================================= */
+
+.slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.slot {
+    min-height: 125px;
+    padding: 20px 14px;
+    border-radius: 16px;
+    border: 1px solid #dce5f1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    text-align: center;
+    font-weight: 700;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Available */
+.slot.available {
+    background: #eaf8f0;
+    border-color: #b9e6cb;
+    color: #176b3a;
+    cursor: pointer;
+}
+
+/* Occupied */
+.slot.occupied {
+    background: #fff0f0;
+    border-color: #f2c6c6;
+    color: #a52e35;
+    cursor: not-allowed;
+}
+
+/* Reserved */
+.slot.reserved {
+    background: #fff6e6;
+    border-color: #f0d7a8;
+    color: #89570c;
+    cursor: not-allowed;
+}
+
+.slot.available:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 9px 20px rgba(23, 107, 58, 0.12);
+}
+
+.slot strong {
+    font-size: 19px;
+    color: inherit;
+}
+
+.slot span {
+    font-size: 13px;
+    color: inherit;
+}
+
+@media (max-width: 600px) {
+    .slot-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .slot {
+        min-height: 110px;
+    }
+}
+
+/* =================================
+   SMARTPARK - PREMIUM STATISTICS
+================================= */
+
+.stat-card {
+    position: relative;
+    overflow: hidden;
+    padding: 24px;
+    min-height: 145px;
+    border: 1px solid #dce6f4;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 5px 18px rgba(20, 55, 100, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(20, 55, 100, 0.10);
+}
+
+.stat-card h3 {
+    color: #344563;
+    font-size: 14px;
+    font-weight: 650;
+    margin: 0 0 14px;
+}
+
+.stat-card p,
+.stat-card .stat-number {
+    color: #10264d;
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0;
+}
+
+.stat-card:nth-child(1) {
+    background: linear-gradient(135deg, #ffffff, #edf3ff);
+    border-left: 5px solid #2874d0;
+}
+
+.stat-card:nth-child(2) {
+    background: linear-gradient(135deg, #ffffff, #eaf8f0);
+    border-left: 5px solid #269b59;
+}
+
+.stat-card:nth-child(3) {
+    background: linear-gradient(135deg, #ffffff, #fff0f0);
+    border-left: 5px solid #d94b52;
+}
+
+.stat-card:nth-child(4) {
+    background: linear-gradient(135deg, #ffffff, #fff6e6);
+    border-left: 5px solid #e6a12b;
+}
+
+@media (max-width: 650px) {
+    .stat-card {
+        padding: 18px;
+        min-height: 120px;
+    }
+
+    .stat-card p,
+    .stat-card .stat-number {
+        font-size: 26px;
+    }
+}
+
+/* =================================
+   SMARTPARK - TOPBAR REDESIGN
+================================= */
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 18px 26px;
+    margin-bottom: 24px;
+    background: #ffffff;
+    border: 1px solid #e0e8f3;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(20, 55, 100, 0.05);
+}
+
+.topbar h1 {
+    color: #10264d;
+    font-size: 23px;
+    font-weight: 800;
+    margin: 0;
+}
+
+.topbar p,
+.topbar-subtitle {
+    color: #526580;
+    font-size: 13px;
+    margin: 5px 0 0;
+}
+
+/* =================================
+   SMARTPARK - WELCOME HERO
+================================= */
+
+.hero-banner {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    padding: 38px 34px;
+    margin-bottom: 25px;
+    min-height: 210px;
+    background: linear-gradient(115deg, #103c78, #2874c7);
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(16, 60, 120, 0.15);
+}
+
+.hero-banner h1,
+.hero-banner h2,
+.hero-banner h3 {
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.hero-banner p {
+    color: #e5efff;
+    max-width: 570px;
+    line-height: 1.7;
+}
+
+/* Keep hero text readable over a background photo */
+.customer-hero {
+    background-image:
+        linear-gradient(90deg, rgba(8, 34, 70, 0.88), rgba(8, 34, 70, 0.28)),
+        url("https://images.unsplash.com/photo-1617209680736-7a6202c498a1?auto=format&fit=crop&w=1600&q=85");
+    background-size: cover;
+    background-position: center;
+}
+
+/* =================================
+   RESPONSIVE TOPBAR AND HERO
+================================= */
+
+@media (max-width: 650px) {
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .hero-banner {
+        padding: 26px 20px;
+        min-height: 180px;
+    }
+
+    .hero-banner h1 {
+        font-size: 23px;
+    }
+}
+
+/* =================================
+   SMARTPARK - PREMIUM SIDEBAR
+================================= */
+
+.sidebar {
+    background: #102d55;
+    color: #ffffff;
+    padding: 25px 16px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #dce6f4;
+}
+
+.sidebar h2,
+.sidebar .logo {
+    color: #ffffff;
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    margin-bottom: 35px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 15px;
+    border-radius: 11px;
+    color: #d6e4f8;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.sidebar nav a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    transform: translateX(3px);
+}
+
+.sidebar nav a.active,
+.sidebar nav a[aria-current="page"] {
+    background: #ffffff;
+    color: #174ea6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.sidebar-bottom a {
+    display: block;
+    padding: 12px 15px;
+    color: #e0eaff;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.sidebar-bottom a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+/* Sidebar responsive behaviour */
+@media (max-width: 768px) {
+    .sidebar {
+        min-height: auto;
+        padding: 15px;
+    }
+
+    .sidebar h2,
+    .sidebar .logo {
+        margin-bottom: 15px;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 7px;
+    }
+
+    .sidebar nav a {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+}
+
+/* =================================
+   SMARTPARK - PREMIUM BUTTON SYSTEM
+================================= */
+
+/* General buttons */
+button,
+.btn,
+.primary-btn {
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Main action buttons */
+#bookingForm button,
+#recommendBtn,
+#updateReportBtn,
+#addSlotForm button {
+    background: #174ea6;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 13px 21px;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(23, 78, 166, 0.15);
+}
+
+#bookingForm button:hover,
+#recommendBtn:hover,
+#updateReportBtn:hover,
+#addSlotForm button:hover {
+    background: #103c82;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 15px rgba(23, 78, 166, 0.20);
+}
+
+/* Cancel and delete buttons */
+.cancel-booking-btn,
+.delete-slot-btn,
+button.danger {
+    background: #fff0f0;
+    color: #b4232d;
+    border: 1px solid #f1c4c7;
+    border-radius: 9px;
+    padding: 9px 15px;
+    font-weight: 700;
+}
+
+.cancel-booking-btn:hover,
+.delete-slot-btn:hover,
+button.danger:hover {
+    background: #b4232d;
+    color: #ffffff;
+}
+
+/* Secondary buttons */
+.secondary-btn,
+#refreshOverstayBtn,
+#verifyManualQrBtn {
+    background: #eaf1fc;
+    color: #174ea6;
+    border: 1px solid #cbdcf5;
+    border-radius: 9px;
+    padding: 10px 16px;
+    font-weight: 700;
+}
+
+.secondary-btn:hover,
+#refreshOverstayBtn:hover,
+#verifyManualQrBtn:hover {
+    background: #d8e7fc;
+}
+
+/* Check-in and check-out actions */
+.check-in-btn,
+.check-out-btn {
+    background: #eaf8f0;
+    color: #176b3a;
+    border: 1px solid #b9e6cb;
+    border-radius: 9px;
+    padding: 9px 14px;
+    font-weight: 700;
+}
+
+.check-in-btn:hover,
+.check-out-btn:hover {
+    background: #176b3a;
+    color: #ffffff;
+}
+
+/* Disabled buttons */
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Keyboard accessibility */
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid #80b7ff;
+    outline-offset: 3px;
+}
+
+/* =================================
+   SMARTPARK - BOOKING HISTORY CARDS
+================================= */
+
+#bookingHistory {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+#bookingHistory .booking-item {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #dce6f4;
+    border-radius: 16px;
+    padding: 21px;
+    box-shadow: 0 5px 16px rgba(20, 55, 100, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#bookingHistory .booking-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 22px rgba(20, 55, 100, 0.10);
+}
+
+#bookingHistory .booking-item h3 {
+    color: #10264d;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 0 14px;
+}
+
+#bookingHistory .booking-item p {
+    color: #526580;
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 7px 0;
+}
+
+/* Booking status */
+#bookingHistory .booking-item .status,
+#bookingHistory .booking-item .status-badge {
+    display: inline-block;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+    background: #eaf8f0;
+    color: #176b3a;
+}
+
+/* Cancel button */
+#bookingHistory .booking-item button {
+    margin-top: 15px;
+}
+
+/* Empty booking history */
+#bookingHistory:empty::after {
+    content: "Your bookings will appear here.";
+    display: block;
+    padding: 30px;
+    text-align: center;
+    color: #64748b;
+    background: #f5f8fd;
+    border: 1px dashed #cbd8e9;
+    border-radius: 14px;
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 600px) {
+    #bookingHistory {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =================================
+   SMARTPARK - DIGITAL QR PARKING PASS
+================================= */
+
+.qr-pass-section {
+    margin: 30px 0;
+    padding: 25px;
+    background: #f1f5fc;
+    border: 1px solid #dce6f4;
+    border-radius: 20px;
+}
+
+.qr-pass-section h2 {
+    color: #10264d;
+    font-size: 23px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.qr-ticket {
+    max-width: 620px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #dce6f4;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(20, 55, 100, 0.09);
+}
+
+.qr-ticket-header {
+    padding: 22px;
+    text-align: center;
+    background: #123c75;
+    color: #ffffff;
+}
+
+.qr-ticket-header h3 {
+    color: #ffffff;
+    font-size: 21px;
+    font-weight: 800;
+    margin: 0;
+}
+
+.qr-ticket-header p {
+    color: #dceaff;
+    margin: 7px 0 0;
+    font-size: 13px;
+}
+
+.qr-ticket-body {
+    padding: 25px;
+    text-align: center;
+}
+
+#qrBookingDetails {
+    color: #263d5d;
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 650;
+    margin-bottom: 20px;
+}
+
+.qr-code-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background: #ffffff;
+    border: 2px dashed #b7c9e2;
+    border-radius: 15px;
+}
+
+#bookingQrImage {
+    display: block;
+    width: 210px;
+    height: 210px;
+    object-fit: contain;
+}
+
+.qr-ticket-footer {
+    padding: 16px 22px;
+    text-align: center;
+    background: #f4f7fc;
+    border-top: 1px dashed #cbd8e9;
+    color: #526580;
+    font-size: 12px;
+}
+
+.download-qr-btn,
+#downloadQrBtn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 13px 23px;
+    border: none;
+    border-radius: 10px;
+    background: #174ea6;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 750;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.download-qr-btn:hover,
+#downloadQrBtn:hover {
+    background: #103c82;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .qr-pass-section {
+        padding: 15px;
+    }
+
+    .qr-ticket-body {
+        padding: 18px;
+    }
+
+    #bookingQrImage {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+/* =================================
+   SMARTPARK - FIX SLOT CLICKABILITY
+================================= */
+
+#slotContainer {
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+#slotContainer .slot {
+    position: relative;
+    z-index: 3;
+    pointer-events: auto;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#slotContainer .slot.available {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+#slotContainer .slot.available:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 9px 20px rgba(23, 107, 58, 0.15);
+}
+
+#slotContainer .slot.occupied,
+#slotContainer .slot.reserved {
+    cursor: not-allowed;
+}
+
+/* Prevent decorative overlays from blocking clicks */
+#slotContainer .slot::before,
+#slotContainer .slot::after {
+    pointer-events: none;
+}
+
+/* SMARTPARK COLORFUL ADMIN LOGIN */
+
+.admin-login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: linear-gradient(
+        135deg,
+        #101c46,
+        #3346a8,
+        #7655d9
+    );
+}
+
+.admin-login-card {
+    width: 100%;
+    max-width: 430px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 22px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.admin-login-card h1 {
+    color: #172554;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.admin-login-card input {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0 18px;
+    border: 1px solid #dbe2f0;
+    border-radius: 10px;
+    background: #f8faff;
+    box-sizing: border-box;
+}
+
+.admin-login-card input:focus {
+    outline: none;
+    border-color: #6554d9;
+    box-shadow: 0 0 0 3px rgba(101, 84, 217, 0.15);
+}
+
+.admin-login-card button {
+    width: 100%;
+    padding: 15px;
+    color: white;
+    background: linear-gradient(90deg, #4055c9, #8055d9);
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.admin-login-card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(80, 70, 200, 0.3);
+}
+
+@media (max-width: 480px) {
+    .admin-login-card {
+        padding: 25px;
+    }
+}
+
+/* =====================================
+   SMARTPARK PREMIUM ADMIN LOGIN
+===================================== */
+
+.login-page {
+    margin: 0;
+    min-height: 100vh;
+    background: #eef2ff;
+    font-family: Arial, sans-serif;
+}
+
+.login-container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+/* LEFT BRAND PANEL */
+
+.login-brand {
+    background: linear-gradient(145deg, #101c46, #344fc0, #7556d9);
+    color: white;
+    padding: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-brand::before,
+.login-brand::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+}
+
+.login-brand::before {
+    width: 350px;
+    height: 350px;
+    top: -100px;
+    right: -100px;
+}
+
+.login-brand::after {
+    width: 250px;
+    height: 250px;
+    bottom: -80px;
+    left: -80px;
+}
+
+.brand-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: #ffffff;
+    color: #4055c9;
+    display: grid;
+    place-items: center;
+    font-size: 26px;
     font-weight: bold;
+}
+
+.login-brand h1 {
+    font-size: 32px;
+    margin: 14px 0 5px;
+}
+
+.login-brand > p {
+    color: #dbe4ff;
+    margin-top: 0;
+}
+
+.login-illustration {
+    margin-top: 75px;
+    max-width: 430px;
+    position: relative;
+    z-index: 1;
+}
+
+.parking-symbol {
+    width: 75px;
+    height: 75px;
+    border: 3px solid white;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.login-illustration h2 {
+    font-size: 36px;
+    line-height: 1.25;
+}
+
+.login-illustration p {
+    color: #dbe4ff;
+    line-height: 1.7;
+}
+
+.brand-footer {
+    margin-top: 80px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #dbe4ff;
+}
+
+/* RIGHT LOGIN PANEL */
+
+.login-form-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 35px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    padding: 42px;
+    border-radius: 22px;
+    box-shadow: 0 18px 55px rgba(36, 50, 110, 0.12);
+    box-sizing: border-box;
+}
+
+.login-tag {
+    color: #6554d9;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.login-card h2 {
+    color: #172554;
+    font-size: 30px;
+    margin: 18px 0 8px;
+}
+
+.login-subtitle {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.login-card label {
+    display: block;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.login-card input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    margin-bottom: 22px;
+    border: 1px solid #dbe2f0;
+    border-radius: 10px;
+    background: #f8faff;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.login-card input:focus {
+    outline: none;
+    border-color: #6554d9;
+    box-shadow: 0 0 0 3px rgba(101, 84, 217, 0.13);
+    background: white;
+}
+
+.login-card .admin-button {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #4055c9, #8055d9);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.login-card .admin-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(80, 70, 200, 0.25);
+}
+
+.login-card .admin-button span {
+    margin-left: 8px;
+}
+
+.customer-link {
+    display: block;
+    text-align: center;
+    margin-top: 28px;
+    color: #5145cd;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.customer-link:hover {
+    text-decoration: underline;
+}
+
+.login-copyright {
+    margin-top: 25px;
+    color: #94a3b8;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 800px) {
+    .login-container {
+        grid-template-columns: 1fr;
+    }
+
+    .login-brand {
+        padding: 30px;
+    }
+
+    .login-illustration {
+        margin-top: 30px;
+    }
+
+    .login-illustration h2 {
+        font-size: 27px;
+    }
+
+    .brand-footer {
+        margin-top: 30px;
+    }
+
+    .login-form-area {
+        padding: 25px 18px;
+    }
+
+    .login-card {
+        padding: 28px;
+    }
+}
+
+/* FIX SMARTPARK P LOGO SIZE */
+
+.login-brand .brand-icon {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px;
+    min-height: 48px;
+    max-width: 48px;
+    max-height: 48px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+    margin: 0;
+    border-radius: 14px;
+    background: #ffffff;
+    color: #4055c9;
+    font-size: 24px !important;
+    line-height: 1 !important;
+    font-weight: 700;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+/* ALIGN SMARTPARK LOGO AND BRAND NAME */
+
+.login-brand .brand-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    z-index: 2;
+}
+
+.login-brand .brand-icon {
+    width: 48px !important;
+    height: 48px !important;
+    flex: 0 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px !important;
+    border-radius: 12px;
+    background: white;
+    color: #4055c9;
+}
+
+.login-brand .brand-heading h1 {
+    margin: 0 0 5px;
+    font-size: 27px;
+}
+
+.login-brand .brand-heading p {
+    margin: 0;
+    font-size: 12px;
+    color: #dbe4ff;
+}
+/* CUSTOMER AND ADMIN PORTAL NAVIGATION */
+
+.admin-nav-link,
+.sidebar-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.admin-nav-link {
+    color: #4055c9;
+    background: #eef2ff;
+}
+
+.admin-nav-link:hover {
+    color: white;
+    background: #4055c9;
+}
+
+.sidebar-link {
+    color: #64748b;
+}
+
+.sidebar-link:hover {
+    color: white;
+    background: #4055c9;
+}
+
+/* CUSTOMER SIDEBAR - ADMIN LOGIN LINK */
+
+.sidebar-admin-link {
+    margin: 22px 12px;
+}
+
+.sidebar-admin-link a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 14px;
+    border-radius: 11px;
+    background: linear-gradient(100deg, #4055c9, #7656d9);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.sidebar-admin-link a:hover {
+    background: linear-gradient(100deg, #3045ad, #6242c9);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(64, 85, 201, 0.25);
+}
+
+.admin-arrow {
+    margin-left: auto;
+    font-size: 18px;
 }
