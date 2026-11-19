@@ -670,6 +670,120 @@ def verify_qr_pass():
     finally:
         connection.close()
 
+# Customer cancellation using the secure QR token
+
+# CUSTOMER: View bookings using saved QR tokens
+@app.route("/api/customer/bookings/list", methods=["POST"])
+def customer_booking_list():
+    data = request.get_json(silent=True) or {}
+    tokens = data.get("qr_tokens", [])
+
+    if not isinstance(tokens, list):
+        return jsonify({"error": "Invalid booking tokens."}), 400
+
+    tokens = list(dict.fromkeys(
+        token for token in tokens
+        if isinstance(token, str) and 1 <= len(token) <= 128
+    ))
+
+    if len(tokens) > 50:
+        return jsonify({"error": "Too many booking tokens."}), 400
+
+    if not tokens:
+        return jsonify([]), 200
+
+    placeholders = ",".join("?" for _ in tokens)
+
+    connection = get_db_connection()
+
+    try:
+        bookings = connection.execute(f"""
+            SELECT
+                bookings.id,
+                bookings.customer_name,
+                bookings.vehicle_number,
+                parking_slots.slot_number,
+                bookings.booking_date,
+                bookings.start_time,
+                bookings.end_time,
+                bookings.status,
+                bookings.check_in_time,
+                bookings.check_out_time,
+                bookings.qr_token
+            FROM bookings
+            JOIN parking_slots
+                ON bookings.slot_id = parking_slots.id
+            WHERE bookings.qr_token IN ({placeholders})
+            ORDER BY bookings.id DESC
+        """, tokens).fetchall()
+
+        return jsonify([dict(booking) for booking in bookings]), 200
+
+    finally:
+        connection.close()
+
+
+# CUSTOMER: Cancel booking using its secure QR token
+@app.route("/api/customer/bookings/cancel", methods=["POST"])
+def customer_cancel_booking():
+    data = request.get_json(silent=True) or {}
+    qr_token = data.get("qr_token")
+
+    if not isinstance(qr_token, str) or not 1 <= len(qr_token) <= 128:
+        return jsonify({
+            "error": "A valid booking token is required."
+        }), 400
+
+    connection = get_db_connection()
+
+    try:
+        booking = connection.execute("""
+            SELECT * FROM bookings
+            WHERE qr_token = ?
+        """, (qr_token,)).fetchone()
+
+        if booking is None:
+            return jsonify({
+                "error": "Booking not found."
+            }), 404
+
+        if booking["status"] == "Cancelled":
+            return jsonify({
+                "error": "This booking is already cancelled."
+            }), 400
+
+        if (
+            booking["status"] != "Confirmed"
+            or booking["check_in_time"] is not None
+            or booking["check_out_time"] is not None
+        ):
+            return jsonify({
+                "error": "This booking can no longer be cancelled."
+            }), 409
+
+        connection.execute("""
+            UPDATE bookings
+            SET status = 'Cancelled'
+            WHERE id = ?
+        """, (booking["id"],))
+
+        connection.commit()
+
+        log_activity(
+            "Booking Cancelled",
+            f"Customer cancelled booking #{booking['id']}.",
+            booking["id"]
+        )
+
+        return jsonify({
+            "message": "Your booking has been cancelled successfully!"
+        }), 200
+
+    finally:
+        connection.close()
+
+
+
 # Cancel an existing booking
 
 @app.route("/api/bookings/<int:booking_id>", methods=["DELETE"])
@@ -946,6 +1060,11 @@ def get_overstay_vehicles():
         }), 200
     finally:
         connection.close()
+        # ==========================================================
+# CUSTOMER: VIEW MY BOOKINGS
+# ==========================================================
+
+
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",

@@ -279,28 +279,33 @@ async function deleteParkingSlot(slotId) {
 // CUSTOMER BOOKING HISTORY
 // ==========================================
 
+    
 async function loadBookings() {
+    console.log("SMARTPARK ADMIN JS IS RUNNING");
     const history = document.getElementById("adminBookings");
 
-    if (!history) return;
+    if (!history) {
+        console.error("adminBookings element not found");
+        return;
+    }
 
     try {
         const response = await fetch("/api/admin/bookings");
+        const bookings = await response.json();
 
         if (!response.ok) {
-            throw new Error("Unable to load admin booking records.");
+            throw new Error("Unable to load bookings");
         }
-
-        const bookings = await response.json();
 
         history.innerHTML = "";
 
-        if (bookings.length === 0) {
-            history.textContent = "No bookings available yet.";
+        if (!bookings.length) {
+            history.textContent = "No bookings available.";
             return;
         }
 
         bookings.forEach(booking => {
+            console.log("SMARTPARK BOOKING DATA:", booking);
             const item = document.createElement("div");
             item.className = "booking-item";
 
@@ -324,30 +329,87 @@ async function loadBookings() {
 
             item.append(heading, details, status, checkIn, checkOut);
 
-            if (booking.status === "Confirmed") {
-                if (!booking.check_in_time) {
-                    const checkInButton = document.createElement("button");
-                    checkInButton.textContent = "Check In";
-                    checkInButton.addEventListener("click", () =>
-                        checkInVehicle(booking.id)
-                    );
-                    item.appendChild(checkInButton);
-                } else if (!booking.check_out_time) {
-                    const checkOutButton = document.createElement("button");
-                    checkOutButton.textContent = "Check Out";
-                    checkOutButton.addEventListener("click", () =>
-                        checkOutVehicle(booking.id)
-                    );
-                    item.appendChild(checkOutButton);
-                }
+            // CHECK-IN BUTTON
+            if (booking.status === "Confirmed" && !booking.check_in_time) {
+                const checkInButton = document.createElement("button");
+                checkInButton.textContent = "Check In";
+                checkInButton.addEventListener("click", () => {
+                    checkInVehicle(booking.id);
+                });
+                item.appendChild(checkInButton);
+            }
+
+            // CHECK-OUT BUTTON
+            if (booking.status === "Confirmed" &&
+                booking.check_in_time &&
+                !booking.check_out_time) {
+                const checkOutButton = document.createElement("button");
+                checkOutButton.textContent = "Check Out";
+                checkOutButton.addEventListener("click", () => {
+                    checkOutVehicle(booking.id);
+                });
+                item.appendChild(checkOutButton);
+            }
+
+            // CANCEL BOOKING BUTTON
+            console.log("Booking cancellation check:", booking.id, booking.status, booking.check_in_time);
+            if (
+    booking.status === "Confirmed" &&
+    !booking.check_in_time &&
+    !booking.check_out_time
+) {
+                const cancelButton = document.createElement("button");
+
+                cancelButton.textContent = "Cancel Booking";
+                cancelButton.className = "cancel-booking-btn";
+
+                cancelButton.style.backgroundColor = "#dc2626";
+                cancelButton.style.color = "#ffffff";
+                cancelButton.style.padding = "10px 18px";
+                cancelButton.style.margin = "10px 5px";
+                cancelButton.style.border = "none";
+                cancelButton.style.borderRadius = "8px";
+                cancelButton.style.cursor = "pointer";
+                cancelButton.style.display = "inline-block";
+
+                cancelButton.addEventListener("click", async () => {
+                    if (!confirm(`Cancel Booking #${booking.id}?`)) return;
+
+                    try {
+                        const cancelResponse = await fetch(
+                            `/api/bookings/${booking.id}`,
+                            { method: "DELETE" }
+                        );
+
+                        const result = await cancelResponse.json();
+
+                        if (!cancelResponse.ok) {
+                            throw new Error(
+                                result.error || result.message || "Cancellation failed"
+                            );
+                        }
+
+                        alert("Booking cancelled successfully!");
+
+                        await loadBookings();
+                        await loadActivityLogs();
+                        await loadDashboard();
+                        await loadParkingSlots();
+
+                    } catch (error) {
+                        alert(error.message);
+                    }
+                });
+
+                item.appendChild(cancelButton);
             }
 
             history.appendChild(item);
         });
 
     } catch (error) {
-        history.textContent = error.message;
-        console.error(error);
+        console.error("Booking loading error:", error);
+        history.textContent = "Error loading bookings: " + error.message;
     }
 }
 

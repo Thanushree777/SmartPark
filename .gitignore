@@ -17,3 +17,7 @@ data/
 # Operating system
 .DS_Store
 Thumbs.db
+
+# Local backup folders
+frontend_backup/
+.github - Copy/
